@@ -1,5 +1,9 @@
 [package]
 name = "textstream"
+description = "Text reader for non-UTF8 encoded text."
+documentation = "https://gyu-don.github.io/rust-textstream/textstream/"
+homepage = "https://github.com/gyu-don/rust-textstream"
+repository = "https://github.com/gyu-don/rust-textstream"
 version = "0.1.0"
 authors = ["gyu-don <takumi.kt+git@gmail.com>"]
 license = "MIT"
