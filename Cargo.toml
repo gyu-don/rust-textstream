@@ -11,6 +11,7 @@ include = [
     "Cargo.toml",
     "**/*.rs",
 ]
+keywords = ["encoding", "charset"]
 
 [dependencies]
 encoding = "0.2.33"
