@@ -1,0 +1,13 @@
+[package]
+name = "textstream"
+version = "0.1.0"
+authors = ["gyu-don <takumi.kt+git@gmail.com>"]
+license = "MIT"
+include = [
+    "Cargo.toml",
+    "**/*.rs",
+]
+
+[dependencies]
+encoding = "0.2.33"
+memchr = "1.0.1"
