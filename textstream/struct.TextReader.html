@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TextReader` struct in crate `textstream`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TextReader">
+
+    <title>textstream::TextReader - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>textstream</a></p><script>window.sidebarCurrent = {name: 'TextReader', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>textstream</a>::<wbr><a class="struct" href=''>TextReader</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/textstream/lib.rs.html#50-57' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct TextReader&lt;R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Read.html" title="trait std::io::Read">Read</a>&gt; { /* fields omitted */ }</pre><div class='docblock'><p>The <code>TextReader</code> struct is wrapper for <code>BufReader</code> to decode text codecs.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Read.html" title="trait std::io::Read">Read</a>&gt; <a class="struct" href="../textstream/struct.TextReader.html" title="struct textstream::TextReader">TextReader</a>&lt;R&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/textstream/lib.rs.html#59-295' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(bufreader: R, encoding: &amp;<a class="trait" href="../encoding/types/trait.Encoding.html" title="trait encoding::types::Encoding">Encoding</a>, trap: <a class="enum" href="../encoding/types/enum.DecoderTrap.html" title="enum encoding::types::DecoderTrap">DecoderTrap</a>) -&gt; <a class="struct" href="../textstream/struct.TextReader.html" title="struct textstream::TextReader">TextReader</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Creates a new <code>TextReader</code> with <code>codec</code>.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">textstream</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">encoding</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::<span class="ident">label</span>::<span class="ident">encoding_from_whatwg_label</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::{<span class="ident">DecoderTrap</span>, <span class="ident">Encoding</span>};
+<span class="kw">use</span> <span class="ident">textstream</span>::<span class="ident">TextReader</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;shiftjis.txt&quot;</span>)<span class="question-mark">?</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">TextReader</span>::<span class="ident">new</span>(<span class="ident">f</span>, <span class="ident">encoding_from_whatwg_label</span>(<span class="string">&quot;shiftjis&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">DecoderTrap</span>::<span class="ident">Strict</span>);</pre>
+</div><h4 id='method.from_bufreader' class="method"><span id='from_bufreader.v' class='invisible'><code>fn <a href='#method.from_bufreader' class='fnname'>from_bufreader</a>(bufreader: <a class="struct" href="https://doc.rust-lang.org/nightly/std/io/buffered/struct.BufReader.html" title="struct std::io::buffered::BufReader">BufReader</a>&lt;R&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; encoding: &amp;<a class="trait" href="../encoding/types/trait.Encoding.html" title="trait encoding::types::Encoding">Encoding</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trap: <a class="enum" href="../encoding/types/enum.DecoderTrap.html" title="enum encoding::types::DecoderTrap">DecoderTrap</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class="struct" href="../textstream/struct.TextReader.html" title="struct textstream::TextReader">TextReader</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Creates a new <code>TextReader</code> from BufReader.</p>
+
+<h1 id='examples-1' class='section-header'><a href='#examples-1'>Examples</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">textstream</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">encoding</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">BufReader</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::<span class="ident">label</span>::<span class="ident">encoding_from_whatwg_label</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::{<span class="ident">DecoderTrap</span>, <span class="ident">Encoding</span>};
+<span class="kw">use</span> <span class="ident">textstream</span>::<span class="ident">TextReader</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">BufReader</span>::<span class="ident">new</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;shiftjis.txt&quot;</span>)<span class="question-mark">?</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">TextReader</span>::<span class="ident">new</span>(<span class="ident">f</span>, <span class="ident">encoding_from_whatwg_label</span>(<span class="string">&quot;shiftjis&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">DecoderTrap</span>::<span class="ident">Strict</span>);</pre>
+</div><h4 id='method.get_bufreader' class="method"><span id='get_bufreader.v' class='invisible'><code>fn <a href='#method.get_bufreader' class='fnname'>get_bufreader</a>(&amp;self) -&gt; &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/io/buffered/struct.BufReader.html" title="struct std::io::buffered::BufReader">BufReader</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Gets a reference to the underlying text reader.
+It is inadvisable to directly read from the underlying reader.</p>
+</div><h4 id='method.get_bufreader_mut' class="method"><span id='get_bufreader_mut.v' class='invisible'><code>fn <a href='#method.get_bufreader_mut' class='fnname'>get_bufreader_mut</a>(&amp;mut self) -&gt; &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/io/buffered/struct.BufReader.html" title="struct std::io::buffered::BufReader">BufReader</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Gets a mutable reference to the underlying text reader.
+It is inadvisable to directly read from the underlying reader.</p>
+</div><h4 id='method.into_bufreader' class="method"><span id='into_bufreader.v' class='invisible'><code>fn <a href='#method.into_bufreader' class='fnname'>into_bufreader</a>(self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/std/io/buffered/struct.BufReader.html" title="struct std::io::buffered::BufReader">BufReader</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Unwraps this <code>TextReader</code>, returning the underlying reader.
+Note that any leftover data in the internal chunk is lost.</p>
+</div><h4 id='method.get_decoder' class="method"><span id='get_decoder.v' class='invisible'><code>fn <a href='#method.get_decoder' class='fnname'>get_decoder</a>(&amp;self) -&gt; &amp;<a class="trait" href="../encoding/types/trait.RawDecoder.html" title="trait encoding::types::RawDecoder">RawDecoder</a></code></span></h4>
+<div class='docblock'><p>Gets a reference to the underlying decoder.</p>
+</div><h4 id='method.get_decoder_mut' class="method"><span id='get_decoder_mut.v' class='invisible'><code>fn <a href='#method.get_decoder_mut' class='fnname'>get_decoder_mut</a>(&amp;mut self) -&gt; &amp;mut <a class="trait" href="../encoding/types/trait.RawDecoder.html" title="trait encoding::types::RawDecoder">RawDecoder</a></code></span></h4>
+<div class='docblock'><p>Gets a mutable reference to the underlying decoder.</p>
+</div><h4 id='method.into_decoder' class="method"><span id='into_decoder.v' class='invisible'><code>fn <a href='#method.into_decoder' class='fnname'>into_decoder</a>(self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;<a class="trait" href="../encoding/types/trait.RawDecoder.html" title="trait encoding::types::RawDecoder">RawDecoder</a>&gt;</code></span></h4>
+<div class='docblock'><p>Unwraps this <code>TextReader</code>, returning the underlying decoder.</p>
+</div><h4 id='method.read_to_end' class="method"><span id='read_to_end.v' class='invisible'><code>fn <a href='#method.read_to_end' class='fnname'>read_to_end</a>(&amp;mut self, buf: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>) -&gt; <a class="type" href="../textstream/type.Result.html" title="type textstream::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>&gt;</code></span></h4>
+<div class='docblock'><p>Read decoded text until file end, placing them into <code>buf</code>.
+If successful, this function will return the total number of bytes read.</p>
+
+<h1 id='examples-2' class='section-header'><a href='#examples-2'>Examples:</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">textstream</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">encoding</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">BufReader</span>;
+<span class="kw">use</span> <span class="ident">textstream</span>::<span class="ident">TextReader</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::<span class="ident">label</span>::<span class="ident">encoding_from_whatwg_label</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::{<span class="ident">DecoderTrap</span>, <span class="ident">Encoding</span>};
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">BufReader</span>::<span class="ident">new</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;shiftjis.txt&quot;</span>)<span class="question-mark">?</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">TextReader</span>::<span class="ident">new</span>(<span class="ident">f</span>, <span class="ident">encoding_from_whatwg_label</span>(<span class="string">&quot;shiftjis&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">DecoderTrap</span>::<span class="ident">Strict</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+<span class="ident">reader</span>.<span class="ident">read_to_end</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;</pre>
+</div><h4 id='method.read_line' class="method"><span id='read_line.v' class='invisible'><code>fn <a href='#method.read_line' class='fnname'>read_line</a>(&amp;mut self, buf: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a>) -&gt; <a class="type" href="../textstream/type.Result.html" title="type textstream::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>&gt;</code></span></h4>
+<div class='docblock'><p>Read decoded text until file end, placing them into <code>buf</code>.
+If successful, this function will return the total number of bytes read.</p>
+
+<h1 id='examples-3' class='section-header'><a href='#examples-3'>Examples:</a></h1>
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">textstream</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">encoding</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>::<span class="ident">File</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">BufReader</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::<span class="ident">label</span>::<span class="ident">encoding_from_whatwg_label</span>;
+<span class="kw">use</span> <span class="ident">encoding</span>::{<span class="ident">DecoderTrap</span>, <span class="ident">Encoding</span>};
+<span class="kw">use</span> <span class="ident">textstream</span>::<span class="ident">TextReader</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">BufReader</span>::<span class="ident">new</span>(<span class="ident">File</span>::<span class="ident">open</span>(<span class="string">&quot;shiftjis.txt&quot;</span>)<span class="question-mark">?</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">TextReader</span>::<span class="ident">new</span>(<span class="ident">f</span>, <span class="ident">encoding_from_whatwg_label</span>(<span class="string">&quot;shiftjis&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">DecoderTrap</span>::<span class="ident">Strict</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>();
+<span class="ident">reader</span>.<span class="ident">read_line</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;</pre>
+</div><h4 id='method.lines' class="method"><span id='lines.v' class='invisible'><code>fn <a href='#method.lines' class='fnname'>lines</a>(self) -&gt; <a class="struct" href="../textstream/struct.Lines.html" title="struct textstream::Lines">Lines</a>&lt;R&gt;</code></span></h4>
+<div class='docblock'><p>Returns an iterator over the lines of this reader.
+The iterator returned from this function will yield instances of
+<code>textstream::Result&lt;String&gt;</code>. Each string will not have a newline byte (the 0xA byte) or
+CRLF (0xD, 0xA bytes) at the end.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "textstream";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
